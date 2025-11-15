@@ -14,3 +14,7 @@ export async function POST(req) {
   return Response.json({ message: "added", newPost });
 }
 
+//GET → data lana
+// POST → data bhejna / create karna 
+//req Ye object hota hai jo request ki sari information rakhta hai: user ne kya body bheji headers kya hain method kya hai, etc.
+ 

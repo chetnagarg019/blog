@@ -66,6 +66,7 @@ export default function Upload() {
           className="border p-2 rounded h-40 w-full resize-none"
           required
         />
+        
         <input
           type="text"
           placeholder="Slug"
