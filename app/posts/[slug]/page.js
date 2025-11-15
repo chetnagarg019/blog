@@ -1,7 +1,7 @@
 'use client';
 import React, { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
-import Link from "next/link";
+import Link from "next/link"; 
 
 export default function PostPage() {
   const params = useParams();
@@ -13,10 +13,10 @@ export default function PostPage() {
     fetch('/api/posts')
       .then(res => res.json())
       .then(data => {
-        const found = data.find(p => p.slug === slug);
+        const found = data.find(p => p.slug === slug); //stu => stu.rol === 2 
         setPost(found);
       });
-  }, [slug]);
+  }, [slug]); //slug=bell useEffect = "light blink"
 
   if (!post) {
     return <p className="text-xl text-red-500 font-semibold p-6">Page not found or Loading...</p>;

@@ -2,28 +2,30 @@
 import React, { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+// import { blogPosts } from "./data/posts";
 
 export default function Page() {
-  const [blogPosts, setBlogPosts] = useState([]);
+  const [blogPosts, setBlogPosts] = useState([]); //Yahan initial value empty array ( [] ) di hui hai.
   const [search, setSearch] = useState('');
   const router = useRouter();
-
-  // Fetch blog posts
+ 
+  // Fetch blog posts 
   useEffect(() => {
-    fetch('/api/posts')
-      .then(res => res.json())
-      .then(data => setBlogPosts(data));
+    fetch('/api/posts')  //fetch builtin function hai jo api/server se data mangta hai 
+      .then(res => res.json()) //res Ye API se aaya response hai. Response ko JSON format me convert karta hai. Kyuki fetch se raw response aata hai.
+      .then(data => setBlogPosts(data)); //data Ye actual blog posts data hai (array ya object). React ki state update kr deta hai.
+
   }, []);
 
   const filteredPosts = blogPosts.filter(
     post =>
       post.title.toLowerCase().includes(search.toLowerCase()) ||
-      post.content.toLowerCase().includes(search.toLowerCase())
+      post.content.toLowerCase().includes(search.toLowerCase()) 
   );
-
+ 
   return (
     <div className="min-h-screen bg-cover bg-center relative bg-black/80" >
-      <div className="absolute inset-0 bg-black/10"></div>
+      <div className="absolute inset-0 bg-black/10"></div> 
       <div className="relative max-w-4xl mx-auto p-6">
         <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-6 text-white">All Blogs</h1>
 
@@ -49,9 +51,9 @@ export default function Page() {
           <div key={post.slug} className="border border-gray-300 rounded-lg p-4 mb-4 shadow hover:shadow-md transition bg-white/80">
             <h2 className="text-2xl font-semibold mb-2">{post.title}</h2>
             <p className="text-sm text-gray-500 mb-2">Author: {post.author} | Date: {post.date}</p>
-            <p className="mb-2">{post.content.slice(0, 100)}...</p>
+            <p className="mb-2">{post.content.slice(0, 100)}....</p>
             <Link href={`/posts/${post.slug}`} className="text-blue-500 hover:underline focus:outline-none">Read More</Link>
-          </div>
+           </div>
         ))}
 
         <button
@@ -60,7 +62,11 @@ export default function Page() {
         >
           Upload blogs
         </button>
+
       </div>
-    </div>
+    </div>  // 
   );
 }
+
+ 
+
